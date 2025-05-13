@@ -44,7 +44,7 @@
         var data = OpenInstall.parseUrlParams();///openinstall-{appKey}.js中提供的api，解析当前网页url中的查询参数并对data进行赋值
         window.console.log('data : ' + JSON.stringify(data));
         data.huimaiMessage = '我是来自H5的消息';
-        data.shareCode = '123456HelloHuimai';
+        data.shareCode = 'MjMyNDk2ODc2OQ';
         var oi = new OpenInstall({//初始化方法，与openinstall服务器交互，应尽早调用
             appKey: "d4etma",//appKey为openinstall为应用分配的唯一id（必须传入）
             onready: function () {//初始化成功回调方法。当初始化完成后，会自动进入
