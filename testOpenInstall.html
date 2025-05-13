@@ -27,15 +27,75 @@
             background-color: #f5f5f5;
             /* 内容区域 */
         }
+
+        .wake_button {
+            background-color: cadetblue;
+            width: 200px;
+            height: 40px;
+            margin-top: 40px;
+            margin-left: 40px;
+            text-align: center;
+            /* 水平居中 */
+            line-height: 40px;
+            /* 垂直居中，值等于div高度 */
+            border-radius: 5px;
+            /* 圆角 */
+            color: white;
+            /* 文本颜色 */
+            cursor: pointer;
+            /* 鼠标悬停时显示手型光标 */
+            transition: all 0.2s ease;
+            /* 添加过渡效果使动画更平滑 */
+        }
+
+        .wake_button:active {
+            transform: scale(0.98);
+            /* 点击时轻微缩小 */
+            background-color: #5f9ea0;
+            /* 点击时颜色变深 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            /* 点击时添加阴影效果 */
+        }
+
+        .code-style {
+            display: inline-block;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            font-size: 14px;
+            color: #a5002f;
+            white-space: pre-wrap;
+            word-break: break-all;
+            line-height: 1.5;
+        }
     </style>
-    
+
 
 </head>
 
 <body>
     <div class="container">
-        <button id="downloadButton" style="width: 180px;height: 40px;margin-top: 40px;margin-left: 40px;">wakeupOrInstall 惠买</button>
-        <button id="schemeButton" style="width: 180px;height: 40px;margin-top: 100px;margin-left: 40px;">schemeWakeup 惠买</button>
+
+        <div>
+            <div style="height: 50px;background-color: #151641;">
+                <img style="width: 184px;height: 30px;margin-top: 10px;margin-left: 10px;"
+                    src="https://developer.openinstall.io/assets/openinstall.4b63b972.png">
+            </div>
+        </div>
+
+        <h1 style="margin-top: 15px;margin-left: 15px;font-size: 25px;">OpenInstall 安装、唤起测试</h1>
+        <p style="margin-top: 15px;margin-left: 15px;">
+            <span>使用Javascript集成方式，页面初始化时new OpenInstall 初始化，在入参data中挂上自定义参数</span>
+        </p>
+
+        <p style="margin-top: 15px;margin-left: 15px;"><span>当前参数：</span></p>
+
+        <p style="margin-top: 15px;margin-left: 15px;margin-right: 15px;color: brown;"><span id="output" class="code-style"></span></p>
+
+        <div id="downloadButton" class="wake_button">调用 wakeupOrInstall 方法</div>
+        <div id="schemeButton" class="wake_button">调用 schemeWakeup 方法</div>
         <!-- 页面内容区域 -->
     </div>
 
@@ -43,7 +103,7 @@
     <script type="text/javascript">
         var data = OpenInstall.parseUrlParams();///openinstall-{appKey}.js中提供的api，解析当前网页url中的查询参数并对data进行赋值
         window.console.log('data : ' + JSON.stringify(data));
-        data.huimaiMessage = '我是来自H5的消息';
+        data.huimaiMessage = '我是来自javascript的自定义内容';
         data.shareCode = 'MjMyNDk2ODc2OQ';
         var oi = new OpenInstall({//初始化方法，与openinstall服务器交互，应尽早调用
             appKey: "d4etma",//appKey为openinstall为应用分配的唯一id（必须传入）
@@ -60,6 +120,11 @@
                 }
             }
         }, data);//初始化时传入data，作为一键拉起/App传参安装时候的参数
+
+        const jsonString = JSON.stringify(data, null, 2);
+
+        // 将字符串显示到 HTML 标签中（假设标签的 id 是 "output"）
+        document.getElementById("output").textContent = jsonString;
     </script>
 
     <script>
