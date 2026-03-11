@@ -126,7 +126,7 @@
             color: #58a6ff;
         }
 
-        a:hover{
+        a:hover {
             color: #0d1117;
         }
 
@@ -258,13 +258,81 @@
 <body>、
     <script>
         function saveImageToGallery() {
-             window.android.saveImageToGallery("https://image.baidu.com/search/down?&tn=download&word=download&ie=utf8&fr=home&url=https%3A%2F%2Fgips1.baidu.com%2Fit%2Fu%3D3874647369%2C3220417986%26fm%3D3028%26app%3D3028%26f%3DJPEG%26fmt%3Dauto%3Fw%3D720%26h%3D1280&thumbUrl=https%3A%2F%2Fgips1.baidu.com%2Fit%2Fu%3D3874647369%2C3220417986%26fm%3D3028%26app%3D3028%26f%3DJPEG%26fmt%3Dauto%3Fw%3D720%26h%3D1280&iswise=1");
+            window.android.saveImageToGallery("https://image.baidu.com/search/down?&tn=download&word=download&ie=utf8&fr=home&url=https%3A%2F%2Fgips1.baidu.com%2Fit%2Fu%3D3874647369%2C3220417986%26fm%3D3028%26app%3D3028%26f%3DJPEG%26fmt%3Dauto%3Fw%3D720%26h%3D1280&thumbUrl=https%3A%2F%2Fgips1.baidu.com%2Fit%2Fu%3D3874647369%2C3220417986%26fm%3D3028%26app%3D3028%26f%3DJPEG%26fmt%3Dauto%3Fw%3D720%26h%3D1280&iswise=1");
         }
-        function authResponse(resp){
+        function authResponse(resp) {
             // var data = JSON.parse(resp_json)
             console.log(resp)
             // console.log(data)
             console.log('authResponse : ' + JSON.stringify(resp))
+        }
+
+        function shareImg() {
+            var data = {
+                "canShareChannels": [
+                    {
+                        "posterImg": "http://img.ugoshop.com/ugoimg/share/img/poster/251226/3c8168b9ffc219825154add6ff5cc21c.jpg",
+                        "shareChannel": "WECHAT",
+                        "shareContent": "比特兔来测试测试老字1号1 伽玛",
+                        "shareImg": "http://img.ugoshop.com/ugoimg/share/img/poster/251226/3c8168b9ffc219825154add6ff5cc21c.jpg",
+                        "sharePath": "/pages/goods/index?goodsId=122536",
+                        "shareShowType": "POSTER",
+                        "shareSubTitle": "",
+                        "shareTitle": "比特兔来测试测试老字1号1 伽玛",
+                        "shareUrl": "https://m.ugoshop.com/goods-122536?goodsId=122536"
+                    },
+                    {
+                        "posterImg": "http://img.ugoshop.com/ugoimg/share/img/poster/251226/32ee2e8c7556c985812062a17e15458e.png",
+                        "shareChannel": "WECHAT_FRIENDS",
+                        "shareContent": "",
+                        "shareImg": "https://assets.ugoshop.com/proimage/6eb4a0a8ee15191d0f8bdf7904614927.jpg!pshare",
+                        "sharePath": "/pages/goods/index?goodsId=122536",
+                        "shareShowType": "POSTER",
+                        "shareSubTitle": "",
+                        "shareTitle": "",
+                        "shareUrl": "https://m.ugoshop.com/goods-122536?goodsId=122536"
+                    }
+                ],
+                "shadeSubTitle": "",
+                "shadeText": "",
+                "shadeTitle": ""
+            };
+
+            window.android.toShareNew(JSON.stringify(data))
+        }
+
+        function shareLink() {
+            var data = {
+                "canShareChannels": [
+                    {
+                        "posterImg": "http://img.ugoshop.com/ugoimg/share/img/poster/251226/3c8168b9ffc219825154add6ff5cc21c.jpg",
+                        "shareChannel": "WECHAT",
+                        "shareContent": "比特兔来测试测试老字1号1 伽玛",
+                        "shareImg": "http://img.ugoshop.com/ugoimg/share/img/poster/251226/3c8168b9ffc219825154add6ff5cc21c.jpg",
+                        "sharePath": "/pages/goods/index?goodsId=122536",
+                        "shareShowType": "LINK",
+                        "shareSubTitle": "",
+                        "shareTitle": "比特兔来测试测试老字1号1 伽玛",
+                        "shareUrl": "https://m.ugoshop.com/goods-122536?goodsId=122536"
+                    },
+                    {
+                        "posterImg": "http://img.ugoshop.com/ugoimg/share/img/poster/251226/32ee2e8c7556c985812062a17e15458e.png",
+                        "shareChannel": "WECHAT_FRIENDS",
+                        "shareContent": "",
+                        "shareImg": "https://assets.ugoshop.com/proimage/6eb4a0a8ee15191d0f8bdf7904614927.jpg!pshare",
+                        "sharePath": "/pages/goods/index?goodsId=122536",
+                        "shareShowType": "LINK",
+                        "shareSubTitle": "",
+                        "shareTitle": "",
+                        "shareUrl": "https://m.ugoshop.com/goods-122536?goodsId=122536"
+                    }
+                ],
+                "shadeSubTitle": "",
+                "shadeText": "",
+                "shadeTitle": ""
+            };
+
+            window.android.toShareNew(JSON.stringify(data))
         }
     </script>
     <div class="container">
@@ -304,14 +372,21 @@
                         <span class="skill-tag">Git</span>
                         <span class="skill-tag">Kubernetes</span> -->
                         <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag"><a href="ugo://com.huimai365/chicken?singlePage=1&masId=100&subid=110&url=https%3A%2F%2Fm.ugoshop.com%2Fact%2Fchicken%2Fmain%3Fa%3D1">庄园scheme唤起</a></span>
-                        <span class="skill-tag"><a href="./testOpenInstall.html?param=HappyNewYear">OpenInstall</a></span>
+                        <span class="skill-tag"><a
+                                href="ugo://com.huimai365/chicken?singlePage=1&masId=100&subid=110&url=https%3A%2F%2Fm.ugoshop.com%2Fact%2Fchicken%2Fmain%3Fa%3D1">庄园scheme唤起</a></span>
+                        <span class="skill-tag"><a
+                                href="./testOpenInstall.html?param=HappyNewYear">OpenInstall</a></span>
                         <span class="skill-tag"><a href="./testJump.html">WebView 跳转测试</a></span>
-                        <span class="skill-tag"><a href="ugo://com.huimai365/weizan?liveId=1419887688&masId=100&singlePage=1&subId=101&isShowRefresh=0">微赞直播</a></span>
-                        <span class="skill-tag"><a href="ugo://com.huimai365/jubaozan?liveId=22626&masId=100&singlePage=1&subId=101&isShowRefresh=0">聚宝赞直播22626</a></span>
-                        <span class="skill-tag"><a href="ugo://com.huimai365/jubaozan?liveId=26689&masId=100&singlePage=1&subId=101&isShowRefresh=0">聚宝赞直播26689</a></span>
+                        <span class="skill-tag"><a
+                                href="ugo://com.huimai365/weizan?liveId=1419887688&masId=100&singlePage=1&subId=101&isShowRefresh=0">微赞直播</a></span>
+                        <span class="skill-tag"><a
+                                href="ugo://com.huimai365/jubaozan?liveId=22626&masId=100&singlePage=1&subId=101&isShowRefresh=0">聚宝赞直播22626</a></span>
+                        <span class="skill-tag"><a
+                                href="ugo://com.huimai365/jubaozan?liveId=26689&masId=100&singlePage=1&subId=101&isShowRefresh=0">聚宝赞直播26689</a></span>
                         <span class="skill-tag"><a onclick="saveImageToGallery()">保存图片到相册</a></span>
                         <span class="skill-tag"><a onclick="window.android.toWXAuth('authResponse')">唤起微信授权</a></span>
+                         <span class="skill-tag"><a onclick="shareImg()">分享图片</a></span>
+                         <span class="skill-tag"><a onclick="shareLink()">分享链接</a></span>
                     </div>
                 </div>
             </aside>
